@@ -184,3 +184,5 @@ Dockerfile.prod
 docker-compose.yml
 
 CLAUDE.md
+data/
+data2/
