@@ -1,0 +1,13 @@
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    entrypoint: python scripts/app.py
+    ports:
+      - "7860:7860"
+    volumes:
+      - yt8m_cache:/root/yt8m
+
+volumes:
+  yt8m_cache:

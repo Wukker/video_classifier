@@ -181,7 +181,6 @@ backend/web/openai/test.py
 nginx/certs/certificate.pem
 nginx/certs/private.key
 Dockerfile.prod
-docker-compose.yml
 
 CLAUDE.md
 .claude

@@ -29,7 +29,7 @@ pip install -e .
 python scripts/predict.py "https://www.youtube.com/shorts/..."
 ```
 
-Или с помощью [uv](https://docs.astral.sh/uv/) (быстрее):
+Или с помощью [uv](https://docs.astral.sh/uv/):
 
 ```bash
 uv sync
@@ -56,6 +56,7 @@ scripts/
   predict.py                   # CLI-инференс
   app.py                       # Gradio веб-приложение
   feature_extractor.py         # извлечение признаков (Inception-v3 + PCA)
+  setup_data.py                # скачивание frame-level TFRecord датасета YT8M
 
 deploy/
   Dockerfile
