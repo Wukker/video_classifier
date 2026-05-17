@@ -1,18 +1,8 @@
-# Video Genre Classifier
+# Классификатор жанров видео
 
 Классификатор жанров YouTube-видео на основе визуальных признаков. Модель обучена на датасете [YouTube-8M](https://research.google.com/youtube8m/) и определяет жанр из 12 категорий по первой минуте видео.
 
 **Жанры:** Animals, Animation, Beauty, Dance, Film, Food, Gaming, Music, Performance, Sports, Tech, Vehicles
-
-## Результаты
-
-| Модель     | Параметры | Test Accuracy | Macro F1 |
-|------------|-----------|---------------|----------|
-| FlattenMLP | 35.9M     | 0.743         | 0.740    |
-| FrameRNN   | 1.09M     | **0.785**     | **0.784**|
-| GatedRNN   | 1.09M     | 0.779         | 0.778    |
-
-Лучшая модель — **FrameRNN** (двунаправленный GRU поверх признаков Inception-v3).
 
 ## Как запустить
 
@@ -32,12 +22,19 @@ docker compose up web
 
 Требуется: Python 3.12+, ffmpeg
 
+С помощью `pip`:
+
 ```bash
 pip install -e .
 python scripts/predict.py "https://www.youtube.com/shorts/..."
 ```
 
-В обоих случаях первый запуск дольше (~2 мин): скачивается Inception-v3 (~100 MB) и кешируется на будущее.
+Или с помощью [uv](https://docs.astral.sh/uv/) (быстрее):
+
+```bash
+uv sync
+uv run python scripts/predict.py "https://www.youtube.com/shorts/..."
+```
 
 ## Структура проекта
 
@@ -51,7 +48,7 @@ pipeline/
   06_inference.ipynb           # оценка на тесте
 
 models/
-  best_rnn.pt                  # веса FrameRNN
+  best_rnn.pt                  # веса лучшей модели
   norm_stats.npz               # статистики нормализации
   config.json                  # конфиг модели
 
@@ -67,10 +64,3 @@ deploy/
 docs/
   report.pdf                   # финальный отчёт ClearML
 ```
-
-## Технический стек
-
-- **Признаки:** Inception-v3 (1024D RGB) + VGGish (128D Audio) из YouTube-8M
-- **Модель:** двунаправленный GRU, 1.09M параметров
-- **Фреймворки:** PyTorch, TensorFlow (feature extractor), Gradio
-- **Трекинг экспериментов:** ClearML
