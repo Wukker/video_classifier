@@ -25,4 +25,6 @@ dependencies = [
     "tf-slim>=1.1.0",
     "soundfile>=0.13.1",
     "clearml>=2.1.5",
+    "torch>=2.5.1",
+    "six>=1.16.0",
 ]

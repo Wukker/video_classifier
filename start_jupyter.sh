@@ -17,4 +17,4 @@ $VENV_NVIDIA/nvjitlink/lib:\
 ${LD_LIBRARY_PATH}
 
 echo "LD_LIBRARY_PATH установлен"
-exec uv run jupyter lab "$@"
+exec uv run jupyter lab --NotebookApp.token='' --NotebookApp.password='' "$@"
